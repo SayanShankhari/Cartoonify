@@ -83,25 +83,31 @@ function getImageMatrix() {
 }
 
 function cartoonify() {
+	var imx = [];
 	var i, j;
 	var r, g, b, a;
 	var random;
+
+	for (i = 0; i < image.height; i++) {
+		imx.push ([]);
+
+		for (j = 0; j < image.width; j++) {
+			imx[i].push (new Pixel (0, 0, 0, 0));
+		}
+	}
 
 	for (i = 1; i < image.height - 1; i++) {
 		for (j = 1; j < image.width - 1; j++) {
 			random = Math.floor (Math.random() * (127 - 0 + 1)) + 0;
 
-			r = random ^ (img[i - 1][j - 1].red + img[i - 1][j].red + img[i - 1][j + 1].red + img[i][j - 1].red + 2 * img[i][j].red + img[i][j + 1].red + img[i + 1][j - 1].red + img[i + 1][j].red + img[i + 1][j + 1].red) / 10;
-			g = random ^ (img[i - 1][j - 1].green + img[i - 1][j].green + img[i - 1][j + 1].green + img[i][j - 1].green + 2 * img[i][j].green + img[i][j + 1].green + img[i + 1][j - 1].green + img[i + 1][j].green + img[i + 1][j + 1].green) / 10;
-			b = random ^ (img[i - 1][j - 1].blue + img[i - 1][j].blue + img[i - 1][j + 1].blue + img[i][j - 1].blue + 2 * img[i][j].blue + img[i][j + 1].blue + img[i + 1][j - 1].blue + img[i + 1][j].blue + img[i + 1][j + 1].blue) / 10;
-			a = random ^ (img[i - 1][j - 1].alpha + img[i - 1][j].alpha + img[i - 1][j + 1].alpha + img[i][j - 1].alpha + 2 * img[i][j].alpha + img[i][j + 1].alpha + img[i + 1][j - 1].alpha + img[i + 1][j].alpha + img[i + 1][j + 1].alpha) / 10;
-
-			img[i][j].red = r;
-			img[i][j].green = g;
-			img[i][j].blue = b;
-			img[i][j].alpha = a;
+			imx[i][j].red = random ^ (img[i - 1][j - 1].red + img[i - 1][j].red + img[i - 1][j + 1].red + img[i][j - 1].red + 2 * img[i][j].red + img[i][j + 1].red + img[i + 1][j - 1].red + img[i + 1][j].red + img[i + 1][j + 1].red) / 10;
+			imx[i][j].green = random ^ (img[i - 1][j - 1].green + img[i - 1][j].green + img[i - 1][j + 1].green + img[i][j - 1].green + 2 * img[i][j].green + img[i][j + 1].green + img[i + 1][j - 1].green + img[i + 1][j].green + img[i + 1][j + 1].green) / 10;
+			imx[i][j].blue = random ^ (img[i - 1][j - 1].blue + img[i - 1][j].blue + img[i - 1][j + 1].blue + img[i][j - 1].blue + 2 * img[i][j].blue + img[i][j + 1].blue + img[i + 1][j - 1].blue + img[i + 1][j].blue + img[i + 1][j + 1].blue) / 10;
+			imx[i][j].alpha = random ^ (img[i - 1][j - 1].alpha + img[i - 1][j].alpha + img[i - 1][j + 1].alpha + img[i][j - 1].alpha + 2 * img[i][j].alpha + img[i][j + 1].alpha + img[i + 1][j - 1].alpha + img[i + 1][j].alpha + img[i + 1][j + 1].alpha) / 10;
 		}
 	}
+
+	img = imx;
 }
 
 function putImageMatrix() {
