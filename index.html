@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cartoonify</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="script.js"></script>
+	</head>
+	<body onload="init()">
+		<center>
+			<h1>Hello, World!</h1>
+			<h2>We are about to cartoonify an image!</h2>
+		</center>
+
+		<input type="file" id="file_upload" multiple size="50" />
+		<button id="convert_button" disabled="true">Convert</button>
+		<button id="download_button" disabled="true">Download</button>
+		<br/><br/>
+		<canvas id="canvas" width="512" height="512"></canvas>
+	</body>
+</html>
