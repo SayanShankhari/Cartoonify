@@ -53,7 +53,7 @@ function setupListeners() {
 	}, false);
 
 	download_button.addEventListener ("click", function() {
-		this.disabled = true;
+		this.href = canvas.toDataURL ('image/png');
 	}, false);
 }
 
